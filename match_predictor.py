@@ -27,3 +27,14 @@ def predict(home_team, away_team):
     if home_team in df_football.index and away_team in df_football.index:
         lambda_home_team = df_football.at[home_team,'GoalsScored'] * df_football.at[away_team,'GoalsConceded']
         lambda_away_team = df_football.at[away_team,'GoalsScored'] * df_football.at[home_team,'GoalsConceded']
+
+p = poisson.pmf(x, lambda_home_team) * poisson.pmf(y, lambda_away_team)
+if x == y:
+    pr_draw += p
+elif x > y:
+    pr_home += p
+else:
+    pr_away += p
+
+points_home_team = 3 * pr_home + pr_draw
+points_away_team = 3 * pr_away + pr_draw
