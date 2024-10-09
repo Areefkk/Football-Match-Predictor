@@ -38,3 +38,18 @@ else:
 
 points_home_team = 3 * pr_home + pr_draw
 points_away_team = 3 * pr_away + pr_draw
+
+## model created using support vector metrices
+svc_predict = svm.SVC()
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.30)
+svc_predict.fit(x_train, y_train)
+
+## model created using support K-Nearest Neighbours
+knn_predict = KNeighborsClassifier()
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.30)
+knn_predict.fit(x_train, y_train)
+
+## model created using logistic regression
+logistic_predict = LogisticRegression()
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.30)
+logistic_predict.fit(x_train, y_train)
